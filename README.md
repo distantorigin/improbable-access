@@ -2,7 +2,7 @@
 
 Contrary to what one might believe, a userscript to improve the screen reader accessibility of Improbable Island.
 
-To install this userscript, you will need a userscript manager, such as [https://www.tampermonkey.net/](Tampermonkey) or [https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/](Greasemonkey \(Firefox only\))
+To install this userscript, you will need a userscript manager, such as [Tampermonkey](https://www.tampermonkey.net/) or [Greasemonkey (Firefox only)](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)
 
 Once you've installed the corresponding web extension, you can click below to install Improbable Access in your browser. This link will also work in-place for script updates.
 
