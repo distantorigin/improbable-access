@@ -1,6 +1,8 @@
 # improbable-access
 
-Contrary to what one might believe, a userscript to improve the screen reader accessibility of Improbable Island.
+Contrary to what one might believe, a userscript to improve the screen reader accessibility of [Improbable Island](https://improbableisland.com/).
+
+## Installing
 
 To install this userscript, you will need a userscript manager, such as [Tampermonkey](https://www.tampermonkey.net/) or [Greasemonkey (Firefox only)](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)
 
