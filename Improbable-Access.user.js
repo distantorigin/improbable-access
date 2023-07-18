@@ -6,7 +6,7 @@
 // @include     https://*improbableisland.com/*
 // @exclude     http://*improbableisland.com/home.php*
 // @exclude     https://*improbableisland.com/home.php*
-// @version     0.1.0
+// @version     0.1.1
 // ==/UserScript==
 
 (function() {
@@ -77,7 +77,7 @@
 
     // Find chat headers and turn them into fake headings for screen readers
 
-    const chatHeaderDivs = document.querySelectorAll('div.ChatHeader');
+    const chatHeaderDivs = document.querySelectorAll('div.chatHeader');
 
     // Loop through each div element
     chatHeaderDivs.forEach(function(chatDiv) {
@@ -86,20 +86,22 @@
         chatDiv.setAttribute('level', '2');
     });
 
-    // Add labels for chat inputs
+    if (chatHeaderDivs) {
+        // Presence of chat headers means we should add labels for chat inputs as well
 
-    const chatInputs = document.querySelectorAll('input[name="comment"]');
+        const chatInputs = document.querySelectorAll('input[name="comment"]');
 
-    chatInputs.forEach(function(chatInput) {
+        chatInputs.forEach(function(chatInput) {
+                        var label = document.createElement("label");
 
-        var label = document.createElement("label");
+                        label.setAttribute("for", chatInput.id);
+                        label.innerText = "Comment:";
 
-        label.setAttribute("for", chatInput.id);
-        label.innerText = "Comment:";
-        chatInput.parentNode.insertBefore(label, chatInput);
-    });
+                        chatInput.parentNode.insertBefore(label, chatInput);
+        });
+        }
 
-    // Check for the presence of a combat card and add remaining HP to the title of the page
+        // Check for the presence of a combat card and add remaining HP to the title of the page
 
     const combatCardHpDiv = document.querySelector('.combatCard_hp');
   
