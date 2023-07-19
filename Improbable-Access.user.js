@@ -12,6 +12,7 @@
 (function() {
     'use strict';
 
+    // Define a CSS class for visually hiding elements
     const css = `
         .visually-hidden {
             position: absolute;
@@ -30,7 +31,25 @@
     style.innerHTML = css;
 
     document.head.appendChild(style);
-        
+
+    function findStatValue(match) {
+        const statTitleSpans = document.querySelectorAll('.stat_title span');
+      
+        for (let i = 0; i < statTitleSpans.length; i++) {
+            const statTitleSpan = statTitleSpans[i];
+
+            const statTitleDiv = statTitleSpan.parentElement;
+      
+            const statValueDiv = statTitleDiv.nextElementSibling;
+         
+            if (statTitleSpan.textContent.trim() === match) {
+                return statValueDiv;
+            }
+        }
+      
+        return null;
+      }
+      
     // Add alt text to various links.
     // Currently only the donate link, but more may be added later.
 
@@ -40,12 +59,14 @@
 
     // Fix hunger stat. ("Title" and "alt" don't get read by some screen readers, so we add a span set to visually-hidden.)
 
-    const statHunger = document.querySelector("#siteheader > div > section > div:nth-child(1) > div.stat_container > div:nth-child(4) > div.stat_value > div");
+    const statHunger = findStatValue('Hunger');
+
     if (statHunger) {
         var hungerSpan = document.createElement('span');
-        hungerSpan.textContent = statHunger.title;
+        hungerSpan.textContent = statHunger.querySelector("div").title.replace(/\bbar\b/g, '').replace(/\bfilled\b/g, 'full');
         hungerSpan.className = "visually-hidden";
-        statHunger.appendChild('hungerSpan');
+        console.log(hungerSpan.textContent);
+        statHunger.appendChild(hungerSpan);
     }
     
     // Turn groups of nav links into lists.
