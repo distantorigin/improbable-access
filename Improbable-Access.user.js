@@ -21,8 +21,8 @@
         // Find the navhead element
         var navHead = navSection.previousElementSibling;
 
-        if (navhead) {
-            // Set navhead to aria-hidden
+        if (navHead) {
+            // Set navHead to aria-hidden
             navHead.setAttribute('aria-hidden', 'true');
         }
             
@@ -30,10 +30,10 @@
         var newList = document.createElement('ul');
 
         // If we have a navhead, set aria-label for the ul element using the inner content
-        if (navhead) {
+        if (navHead) {
             newList.setAttribute('aria-label', navHead.textContent.trim());
         }
-        
+
         // Find all links inside the current navsection and iterate through each
      
         var navItems = navSection.querySelectorAll('.nav');
