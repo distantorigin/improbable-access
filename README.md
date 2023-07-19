@@ -8,6 +8,8 @@ To install this userscript, you will need a userscript manager, such as [Tamperm
 
 Once you've installed the corresponding web extension, you can click below to install Improbable Access in your browser. This link will also work in-place for script updates.
 
+**Note**: For the userscript to work properly, you must be using the Desktop skin. You can check if this is  set by going to Preferences > Display Preferences.
+
 [Install Improbable Access](https://github.com/distantorigin/improbable-access/raw/main/Improbable-Access.user.js)
 
 ## Features
