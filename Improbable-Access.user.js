@@ -6,11 +6,18 @@
 // @include     https://*improbableisland.com/*
 // @exclude     http://*improbableisland.com/home.php*
 // @exclude     https://*improbableisland.com/home.php*
-// @version     0.1.2
+// @version     0.1.3
 // ==/UserScript==
 
 (function() {
     'use strict';
+    
+    // Add alt text to various links.
+    // Currently only the donate link, but more may be added later.
+    try {
+        document.querySelector('#navigationcol > div > div.navigation-extras > a').querySelector("img").alt = "Donate";
+    } catch {}
+
     // Turn groups of nav links into lists.
 
     // Find all navsections and loop through each one
