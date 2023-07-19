@@ -33,17 +33,20 @@
         
     // Add alt text to various links.
     // Currently only the donate link, but more may be added later.
+
     try {
         document.querySelector('#navigationcol > div > div.navigation-extras > a').querySelector("img").alt = "Donate";
     } catch {}
 
-    // Fix hunger stat. ("Title" and "alt" don't get read by some screen readers, so we add a span set to aria-hidden.)
+    // Fix hunger stat. ("Title" and "alt" don't get read by some screen readers, so we add a span set to visually-hidden.)
 
     const statHunger = document.querySelector("#siteheader > div > section > div:nth-child(1) > div.stat_container > div:nth-child(4) > div.stat_value > div");
     if (statHunger) {
-        statHunger.setAttribute('aria-label', statHunger.title);
+        hungerSpan = document.createElement('span');
+        hungerSpan.textContent = statHunger.title;
+        hungerSpan.className = "visually-hidden";
+        statHunger.appendChild('hungerSpan');
     }
-    
     // Turn groups of nav links into lists.
 
     // Find all navsections and loop through each one
