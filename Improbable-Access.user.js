@@ -9,7 +9,7 @@
 // @version     0.1.42
 // ==/UserScript==
 
-(function() {
+(function () {
     'use strict';
 
     // Define a CSS class for visually hiding elements
@@ -34,28 +34,28 @@
 
     function findStatValue(match) {
         const statTitleSpans = document.querySelectorAll('.stat_title span');
-      
+
         for (let i = 0; i < statTitleSpans.length; i++) {
             const statTitleSpan = statTitleSpans[i];
 
             const statTitleDiv = statTitleSpan.parentElement;
-      
+
             const statValueDiv = statTitleDiv.nextElementSibling;
-         
+
             if (statTitleSpan.textContent.trim() === match) {
                 return statValueDiv;
             }
         }
-      
+
         return null;
-      }
-      
+    }
+
     // Add alt text to various links.
     // Currently only the donate link, but more may be added later.
 
     try {
         document.querySelector('#navigationcol > div > div.navigation-extras > a').querySelector("img").alt = "Donate";
-    } catch {}
+    } catch { }
 
     // Fix hunger stat. ("Title" and "alt" don't get read by some screen readers, so we add a span set to visually-hidden.)
 
@@ -68,14 +68,14 @@
         console.log(hungerSpan.textContent);
         statHunger.appendChild(hungerSpan);
     }
-    
+
     // Turn groups of nav links into lists.
 
     // Find all navsections and loop through each one
     var navSections = document.querySelectorAll('.navsection');
-    
-    navSections.forEach(function(navSection) {
-        
+
+    navSections.forEach(function (navSection) {
+
         // Find the navhead element
         var navHead = navSection.previousElementSibling;
 
@@ -83,7 +83,7 @@
             // Set navHead to aria-hidden
             navHead.setAttribute('aria-hidden', 'true');
         }
-            
+
         // Create a new ul element
         var newList = document.createElement('ul');
 
@@ -93,10 +93,10 @@
         }
 
         // Find all links inside the current navsection and iterate through each
-     
+
         var navItems = navSection.querySelectorAll('.nav');
 
-        navItems.forEach(function(navItem) {
+        navItems.forEach(function (navItem) {
 
             var newListItem = document.createElement('li');
 
@@ -114,14 +114,14 @@
     var navigationDivs = document.querySelectorAll('div.navigation');
 
     // Loop through each navigation div
-    navigationDivs.forEach(function(navigationDiv) {
+    navigationDivs.forEach(function (navigationDiv) {
 
         // Create a new h2 element for each navigation
         var newHeading = document.createElement('h2');
 
         newHeading.textContent = "Navigation";
         newHeading.className = "VISUALLY-HIDDEN";
-        
+
         // Insert the h2 element before the navigation div
         navigationDiv.parentNode.insertBefore(newHeading, navigationDiv);
     });
@@ -131,7 +131,7 @@
     const chatHeaderDivs = document.querySelectorAll('div.chatHeader');
 
     // Loop through each div element
-    chatHeaderDivs.forEach(function(chatDiv) {
+    chatHeaderDivs.forEach(function (chatDiv) {
         // Add the role and level attributes
         chatDiv.setAttribute('role', 'heading');
         chatDiv.setAttribute('level', '2');
@@ -142,24 +142,24 @@
 
         const chatInputs = document.querySelectorAll('input[name="comment"]');
 
-        chatInputs.forEach(function(chatInput) {
-                        var label = document.createElement("label");
+        chatInputs.forEach(function (chatInput) {
+            var label = document.createElement("label");
 
-                        label.setAttribute("for", chatInput.id);
-                        label.innerText = "Comment:";
+            label.setAttribute("for", chatInput.id);
+            label.innerText = "Comment:";
 
-                        chatInput.parentNode.insertBefore(label, chatInput);
+            chatInput.parentNode.insertBefore(label, chatInput);
         });
-        }
+    }
 
-        // Check for the presence of a combat card and add remaining HP to the title of the page
+    // Check for the presence of a combat card and add remaining HP to the title of the page
 
     const combatCardHpDiv = document.querySelector('.combatCard_hp');
-  
+
     if (combatCardHpDiv) {
-        
+
         const hpValue = combatCardHpDiv.querySelector('span').textContent;
-    
+
         // Update the title of the page with current HP
         document.title += ' [' + hpValue + ' HP]';
     }
