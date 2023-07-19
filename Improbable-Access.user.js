@@ -6,7 +6,7 @@
 // @include     https://*improbableisland.com/*
 // @exclude     http://*improbableisland.com/home.php*
 // @exclude     https://*improbableisland.com/home.php*
-// @version     0.1.42
+// @version     0.1.43
 // ==/UserScript==
 
 (function () {

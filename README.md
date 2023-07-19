@@ -20,6 +20,9 @@ The following is an exhaustive but potentially incomplete list of features intro
 * Add headings for chat (if present).
 * Properly label the chat input field.
 * Add current hitpoints to the page title when in battle.
+* Make the "Hunger" stat value accessible to screen readers.
+* Add some accessible labels to various links:
+    * Donate link
 
 ## Disclaimer
 
