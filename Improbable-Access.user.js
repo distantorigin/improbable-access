@@ -6,7 +6,7 @@
 // @include     https://*improbableisland.com/*
 // @exclude     http://*improbableisland.com/home.php*
 // @exclude     https://*improbableisland.com/home.php*
-// @version     0.1.3
+// @version     0.1.4
 // ==/UserScript==
 
 (function() {
@@ -18,6 +18,13 @@
         document.querySelector('#navigationcol > div > div.navigation-extras > a').querySelector("img").alt = "Donate";
     } catch {}
 
+    // Fix hunger stat. ("Title" and "alt" don't get read by some screen readers, so we add an aria-label.)
+
+    const statHunger = document.querySelector("#siteheader > div > section > div:nth-child(1) > div.stat_container > div:nth-child(4) > div.stat_value > div");
+    if (statHunger) {
+        statHunger.setAttribute('aria-label', statHunger.title);
+    }
+    
     // Turn groups of nav links into lists.
 
     // Find all navsections and loop through each one
