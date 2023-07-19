@@ -42,11 +42,12 @@
 
     const statHunger = document.querySelector("#siteheader > div > section > div:nth-child(1) > div.stat_container > div:nth-child(4) > div.stat_value > div");
     if (statHunger) {
-        hungerSpan = document.createElement('span');
+        var hungerSpan = document.createElement('span');
         hungerSpan.textContent = statHunger.title;
         hungerSpan.className = "visually-hidden";
         statHunger.appendChild('hungerSpan');
     }
+    
     // Turn groups of nav links into lists.
 
     // Find all navsections and loop through each one
