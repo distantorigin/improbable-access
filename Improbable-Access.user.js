@@ -6,19 +6,38 @@
 // @include     https://*improbableisland.com/*
 // @exclude     http://*improbableisland.com/home.php*
 // @exclude     https://*improbableisland.com/home.php*
-// @version     0.1.4
+// @version     0.1.41
 // ==/UserScript==
 
 (function() {
     'use strict';
-    
+
+    const css = `
+        .visually-hidden {
+            position: absolute;
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0,0,0,0) !important;    white-space: nowrap !important;
+            border: 0 !important;
+        }
+    `;
+
+    var style = document.createElement('style');
+    style.innerHTML = css;
+
+    document.head.appendChild(style);
+        
     // Add alt text to various links.
     // Currently only the donate link, but more may be added later.
     try {
         document.querySelector('#navigationcol > div > div.navigation-extras > a').querySelector("img").alt = "Donate";
     } catch {}
 
-    // Fix hunger stat. ("Title" and "alt" don't get read by some screen readers, so we add an aria-label.)
+    // Fix hunger stat. ("Title" and "alt" don't get read by some screen readers, so we add a span set to aria-hidden.)
 
     const statHunger = document.querySelector("#siteheader > div > section > div:nth-child(1) > div.stat_container > div:nth-child(4) > div.stat_value > div");
     if (statHunger) {
@@ -76,19 +95,8 @@
         var newHeading = document.createElement('h2');
 
         newHeading.textContent = "Navigation";
-
-        // Apply CSS to make the h2 element invisible
-        newHeading.style.position = 'absolute';
-        newHeading.style.width = '1px';
-        newHeading.style.height = '1px';
-        newHeading.style.margin = '-1px';
-        newHeading.style.border = '0';
-        newHeading.style.padding = '0';
-        newHeading.style.overflow = 'hidden';
-        newHeading.style.clip = 'rect(0 0 0 0)';
-        newHeading.style.clipPath = 'inset(50%)';
-        newHeading.style.whiteSpace = 'nowrap';
-
+        newHeading.className = "VISUALLY-HIDDEN";
+        
         // Insert the h2 element before the navigation div
         navigationDiv.parentNode.insertBefore(newHeading, navigationDiv);
     });
