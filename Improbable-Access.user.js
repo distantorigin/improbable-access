@@ -6,7 +6,7 @@
 // @include     https://*improbableisland.com/*
 // @exclude     http://*improbableisland.com/home.php*
 // @exclude     https://*improbableisland.com/home.php*
-// @version     0.1.1
+// @version     0.1.2
 // ==/UserScript==
 
 (function() {
@@ -21,15 +21,19 @@
         // Find the navhead element
         var navHead = navSection.previousElementSibling;
 
-        // Set navhead to aria-hidden
-        navHead.setAttribute('aria-hidden', 'true');
-
+        if (navhead) {
+            // Set navhead to aria-hidden
+            navHead.setAttribute('aria-hidden', 'true');
+        }
+            
         // Create a new ul element
         var newList = document.createElement('ul');
 
-        // Set aria-label for the ul element using the content of navhead
-        newList.setAttribute('aria-label', navHead.textContent.trim());
-
+        // If we have a navhead, set aria-label for the ul element using the inner content
+        if (navhead) {
+            newList.setAttribute('aria-label', navHead.textContent.trim());
+        }
+        
         // Find all links inside the current navsection and iterate through each
      
         var navItems = navSection.querySelectorAll('.nav');
