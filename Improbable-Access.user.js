@@ -6,7 +6,7 @@
 // @include     https://*improbableisland.com/*
 // @exclude     http://*improbableisland.com/home.php*
 // @exclude     https://*improbableisland.com/home.php*
-// @version     0.1.43
+// @version     0.1.44
 // ==/UserScript==
 
 (function () {
@@ -50,6 +50,15 @@
         return null;
     }
 
+    // Add a ghetto "update" link to the footer.
+
+    const updateLink = document.createElement('a');
+
+    updateLink.textContent = 'Update Improbable Access';
+    updateLink.href = 'https://github.com/distantorigin/improbable-access/raw/main/Improbable-Access.user.js';
+
+    document.querySelector("footer").appendChild(updateLink);
+    
     // Add alt text to various links.
     // Currently only the donate link, but more may be added later.
 
