@@ -71,6 +71,10 @@
     function announceXP() {
         announce(findStatValue("XP").textContent);
     }
+
+    function announceDayRemaining() {
+        announce(findStatValue("New day in:").textContent);
+    }
     
     function announceStamina() {
         announce(findStatValue("Stamina").textContent);
@@ -120,6 +124,9 @@
         } else if (event.ctrlKey && event.key == "s") {
             event.preventDefault();
 announceStamina();
+} else if (event.ctrlKey && event.key == "d") {
+    event.preventDefault();
+announceDayRemaining();
         }
     });
 
