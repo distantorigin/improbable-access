@@ -6,7 +6,7 @@
 // @include     https://*improbableisland.com/*
 // @exclude     http://*improbableisland.com/home.php*
 // @exclude     https://*improbableisland.com/home.php*
-// @version     0.1.44
+// @version     0.1.45
 // ==/UserScript==
 
 (function () {
@@ -50,6 +50,15 @@
         return null;
     }
 
+    // Define a live region for arbitrary announcements.
+
+    var liveRegion = document.createElement("div");
+    liveRegion.id = "live-announcements";
+    liveRegion.setAttribute("aria-live", "assertive");
+    liveRegion.setAttribute("aria-atomic", "true");
+
+    document.querySelector('footer').appendChild(liveRegion);
+
     // Add a ghetto "update" link to the footer.
 
     const updateLink = document.createElement('a');
@@ -58,7 +67,62 @@
     updateLink.href = 'https://github.com/distantorigin/improbable-access/raw/main/Improbable-Access.user.js';
 
     document.querySelector("footer").appendChild(updateLink);
+
+    function announceXP() {
+        announce(findStatValue("XP").textContent);
+    }
     
+    function announceStamina() {
+        announce(findStatValue("Stamina").textContent);
+    }
+
+    function announceBuffs() {
+        // Extract the text content of each buff element and store it in an array, and then announce it as an English list.
+
+        const statBuffs = document.querySelectorAll('.stat_buff > span');
+
+        const statBuffList = [];
+
+        statBuffs.forEach(buff => {
+            statBuffList.push(buff.textContent.trim().replace(/\n/g, ''));
+        });
+
+        let statBuffEnglishList = "";
+
+        if (statBuffList.length === 1) {
+            statBuffEnglishList = statBuffList[0];
+        } else if (statBuffList.length === 2) {
+            statBuffEnglishList = `${statBuffList[0]} and ${statBuffList[1]}`;
+        } else if (statBuffList.length > 2) {
+            const lastItem = statBuffList.pop();
+            statBuffEnglishList = `${statBuffList.join(', ')}, and ${lastItem}`;
+        }
+
+        announce(statBuffEnglishList);
+    }
+
+    function announce(text) {
+        // Announce text using the defined live region.
+
+        document.getElementById("live-announcements").textContent = text;
+
+        setTimeout(function () {
+            document.getElementById("live-announcements").textContent = ''
+        }, 1000);
+    }
+
+    document.addEventListener("keydown", function (event) {
+        if (event.ctrlKey && event.key == ",") {
+            announceXP();
+        } else if (event.ctrlKey && event.key == "b") {
+                        event.preventDefault();
+            announceBuffs();
+        } else if (event.ctrlKey && event.key == "s") {
+            event.preventDefault();
+announceStamina();
+        }
+    });
+
     // Add alt text to various links.
     // Currently only the donate link, but more may be added later.
 
