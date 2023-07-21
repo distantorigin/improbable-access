@@ -30,6 +30,7 @@ The following is an exhaustive but potentially incomplete list of features intro
     * Ctrl+h - Hitpoints or adrenaline
     * Ctrl+S - Stamina
     * Ctrl+D - Time until a new day
+    * Ctrl+B - Current buffs (in a concatenated English list [i.e. "Clan Aura and Exhaustion"])
 
 ## Disclaimer
 
