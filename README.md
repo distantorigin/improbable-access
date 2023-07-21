@@ -25,6 +25,11 @@ The following is an exhaustive but potentially incomplete list of features intro
 * Make the "Hunger" stat value accessible to screen readers.
 * Add some accessible labels to various links:
     * Donate link
+* Keystrokes for quickly announcing various information:
+    * Ctrl+Comma - Experience points
+    * Ctrl+h - Hitpoints or adrenaline
+    * Ctrl+S - Stamina
+    * Ctrl+D - Time until a new day
 
 ## Disclaimer
 
