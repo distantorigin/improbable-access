@@ -72,6 +72,18 @@
         announce(findStatValue("XP").textContent);
     }
 
+    function announceHP() {  
+        try {
+            announce(findStatValue("Hitpoints").textContent);
+        } catch {
+            try {
+                announce(findStatValue("Adrenaline").textContent);
+            } catch {
+                announce("Cannot find hitpoints.");
+            }
+        }
+    }
+
     function announceDayRemaining() {
         announce(findStatValue("New day in:").textContent);
     }
@@ -127,7 +139,10 @@ announceStamina();
 } else if (event.ctrlKey && event.key == "d") {
     event.preventDefault();
 announceDayRemaining();
-        }
+} else if (event.ctrlKey && event.key == "h") {
+    event.preventDefault();
+announceHP();        
+}
     });
 
     // Add alt text to various links.
