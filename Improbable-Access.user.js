@@ -72,7 +72,7 @@
         announce(findStatValue("XP").textContent);
     }
 
-    function announceHP() {  
+    function announceHP() {
         try {
             announce(findStatValue("Hitpoints").textContent);
         } catch {
@@ -87,7 +87,7 @@
     function announceDayRemaining() {
         announce(findStatValue("New day in:").textContent);
     }
-    
+
     function announceStamina() {
         announce(findStatValue("Stamina").textContent);
     }
@@ -131,18 +131,18 @@
         if (event.ctrlKey && event.key == ",") {
             announceXP();
         } else if (event.ctrlKey && event.key == "b") {
-                        event.preventDefault();
+            event.preventDefault();
             announceBuffs();
         } else if (event.ctrlKey && event.key == "s") {
             event.preventDefault();
-announceStamina();
-} else if (event.ctrlKey && event.key == "d") {
-    event.preventDefault();
-announceDayRemaining();
-} else if (event.ctrlKey && event.key == "h") {
-    event.preventDefault();
-announceHP();        
-}
+            announceStamina();
+        } else if (event.ctrlKey && event.key == "d") {
+            event.preventDefault();
+            announceDayRemaining();
+        } else if (event.ctrlKey && event.key == "h") {
+            event.preventDefault();
+            announceHP();
+        }
     });
 
     // Add alt text to various links.
