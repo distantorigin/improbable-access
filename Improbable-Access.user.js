@@ -96,13 +96,19 @@
         // Extract the text content of each buff element and store it in an array, and then announce it as an English list.
 
         const statBuffs = document.querySelectorAll('.stat_buff > span');
-
         const statBuffList = [];
+        var buffStr;
 
         statBuffs.forEach(buff => {
-            statBuffList.push(buff.textContent.trim().replace(/\n/g, ''));
+
+            buffStr = buff.textContent.trim().replace(/\n/g, '');
+            
+            if (buffStr) {
+                statBuffList.push(buffStr);
+            }
         });
 
+        if (statBuffList) {
         let statBuffEnglishList = "";
 
         if (statBuffList.length === 1) {
@@ -115,6 +121,9 @@
         }
 
         announce(statBuffEnglishList);
+    } else {
+        announce('You currently have no buffs.');
+    }
     }
 
     function announce(text) {
