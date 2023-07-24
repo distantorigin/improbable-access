@@ -50,15 +50,6 @@
         return null;
     }
 
-    // Define a live region for arbitrary announcements.
-
-    var liveRegion = document.createElement("div");
-    liveRegion.id = "live-announcements";
-    liveRegion.setAttribute("aria-live", "assertive");
-    liveRegion.setAttribute("aria-atomic", "true");
-
-    document.querySelector('footer').appendChild(liveRegion);
-
     // Add a ghetto "update" link to the footer.
 
     const updateLink = document.createElement('a');
@@ -67,6 +58,15 @@
     updateLink.href = 'https://github.com/distantorigin/improbable-access/raw/main/Improbable-Access.user.js';
 
     document.querySelector("footer").appendChild(updateLink);
+
+    // Define a live region for arbitrary announcements.
+
+    var liveRegion = document.createElement("div");
+    liveRegion.id = "live-announcements";
+    liveRegion.setAttribute("aria-live", "assertive");
+    liveRegion.setAttribute("aria-atomic", "true");
+
+    document.querySelector('footer').appendChild(liveRegion);
 
     function announceXP() {
         announce(findStatValue("XP").textContent);
@@ -102,28 +102,28 @@
         statBuffs.forEach(buff => {
 
             buffStr = buff.textContent.trim().replace(/\n/g, '');
-            
+
             if (buffStr) {
                 statBuffList.push(buffStr);
             }
         });
 
         if (statBuffList) {
-        let statBuffEnglishList = "";
+            let statBuffEnglishList = "";
 
-        if (statBuffList.length === 1) {
-            statBuffEnglishList = statBuffList[0];
-        } else if (statBuffList.length === 2) {
-            statBuffEnglishList = `${statBuffList[0]} and ${statBuffList[1]}`;
-        } else if (statBuffList.length > 2) {
-            const lastItem = statBuffList.pop();
-            statBuffEnglishList = `${statBuffList.join(', ')}, and ${lastItem}`;
+            if (statBuffList.length === 1) {
+                statBuffEnglishList = statBuffList[0];
+            } else if (statBuffList.length === 2) {
+                statBuffEnglishList = `${statBuffList[0]} and ${statBuffList[1]}`;
+            } else if (statBuffList.length > 2) {
+                const lastItem = statBuffList.pop();
+                statBuffEnglishList = `${statBuffList.join(', ')}, and ${lastItem}`;
+            }
+
+            announce(statBuffEnglishList);
+        } else {
+            announce('You currently have no buffs.');
         }
-
-        announce(statBuffEnglishList);
-    } else {
-        announce('You currently have no buffs.');
-    }
     }
 
     function announce(text) {
