@@ -205,9 +205,8 @@
             if (navItem.innerText === 'Deposit all in Bank') {
                 // Add accesskeys for Fast Banking
                 navItem.setAttribute('accesskey', '2');
-                navItem.innerText = navItem.innerText + " Alt+2";
             }
-
+            
             var newListItem = document.createElement('li');
 
             newListItem.appendChild(navItem);
