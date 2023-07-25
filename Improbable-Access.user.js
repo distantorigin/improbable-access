@@ -6,7 +6,7 @@
 // @include     https://*improbableisland.com/*
 // @exclude     http://*improbableisland.com/home.php*
 // @exclude     https://*improbableisland.com/home.php*
-// @version     0.1.50
+// @version     0.1.51
 // ==/UserScript==
 
 (function () {
@@ -201,6 +201,12 @@
         var navItems = navSection.querySelectorAll('.nav');
 
         navItems.forEach(function (navItem) {
+
+            if (navItem.innerText === 'Deposit all in Bank') {
+                // Add accesskeys for Fast Banking
+                navItem.setAttribute('accesskey', '2');
+                navItem.innerText = link.innerText + " Alt+2";
+            }
 
             var newListItem = document.createElement('li');
 
