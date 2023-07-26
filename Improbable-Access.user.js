@@ -6,7 +6,7 @@
 // @include     https://*improbableisland.com/*
 // @exclude     http://*improbableisland.com/home.php*
 // @exclude     https://*improbableisland.com/home.php*
-// @version     0.1.52
+// @version     0.1.53
 // ==/UserScript==
 
 (function () {
@@ -31,6 +31,8 @@
     style.innerHTML = css;
 
     document.head.appendChild(style);
+
+    const reqOnHand = findStatValue('Req').textContent;
 
     function findStatValue(match) {
         const statTitleSpans = document.querySelectorAll('.stat_title span');
@@ -90,6 +92,10 @@
 
     function announceStamina() {
         announce(findStatValue("Stamina").textContent);
+    }
+    
+    function announceReq() {
+        announce(reqOnHand);
     }
 
     function announceBuffs() {
@@ -151,6 +157,9 @@
         } else if (event.ctrlKey && event.key == "h") {
             event.preventDefault();
             announceHP();
+        } else if (event.ctrlKey && event.key == "r") {
+            event.preventDefault();
+            announceReq();
         }
     });
 
@@ -204,9 +213,10 @@
 
             if (navItem.innerText === 'Deposit all in Bank') {
                 // Add accesskeys for Fast Banking
-                navItem.setAttribute('accesskey', '2');
+                navItem.setAttribute('accesskey', reqOnHand[0]);
+                navItem.innerText = navItem.innerText + " (" + reqOnHand + ")";
             }
-            
+
             var newListItem = document.createElement('li');
 
             newListItem.appendChild(navItem);
